@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Dienblad()
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Dienblad\r\n
+comment1.params=
+comment1.target=java.util.Iterator\ getArtikelen()
+comment2.params=artikel
+comment2.target=void\ voegToe(Artikel)
+numComments=3

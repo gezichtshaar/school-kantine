@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Kassarij()
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Kassarij\r\n
+comment1.params=
+comment1.target=Persoon\ eerstePersoonInRij()
+comment2.params=
+comment2.target=boolean\ erIsEenRij()
+comment3.params=
+comment3.target=java.util.Iterator\ getKassaRijIterator()
+comment4.params=persoon
+comment4.target=void\ sluitAchteraan(Persoon)
+numComments=5

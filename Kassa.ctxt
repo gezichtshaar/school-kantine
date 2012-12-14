@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.params=kassarij
+comment0.target=Kassa(Kassarij)
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Kassa\r\n
+comment1.params=
+comment1.target=int\ aantalArtikelen()
+comment2.params=
+comment2.target=double\ hoeveelheidGeldInKassa()
+comment3.params=
+comment3.target=void\ resetKassa()
+comment4.params=persoon
+comment4.target=void\ rekenAf(Persoon)
+numComments=5

@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Kantine()
+comment0.text=\r\n\ Constructor\ for\ objects\ of\ class\ Kantine\r\n
+comment1.params=
+comment1.target=Kassa\ getKassa()
+comment2.params=kantineAanbod
+comment2.target=void\ setKantineAanbod(KantineAanbod)
+comment3.params=persoon\ artikelnamen
+comment3.target=void\ loopPakSluitAan(Persoon,\ java.lang.String[])
+comment4.params=
+comment4.target=void\ verwerkRijVoorKassa()
+numComments=5
