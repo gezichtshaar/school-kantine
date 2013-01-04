@@ -136,6 +136,6 @@ public class Persoon
     
     public void drukAf() {
         System.out.println("Voornaam: "+voorNaam+ "\nAchternaam: "+achterNaam+"\nBSN: "+BSN+ "\nGeboortedatum: "+getGeboorteDatum()+"\nGeslacht: "+getGeslacht());
-    }
+    }    
     
 }

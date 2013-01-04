@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Docent()
+comment1.params=vierlettercode
+comment1.target=void\ setVierlettercode(java.lang.String)
+comment2.params=vierlettercode
+comment2.target=java.lang.String\ getVierlettercode(java.lang.String)
+comment3.params=afdeling
+comment3.target=void\ setAfdeling(java.lang.String)
+comment4.params=afdeling
+comment4.target=java.lang.String\ getAfdeling(java.lang.String)
+comment5.params=
+comment5.target=void\ drukAf()
+numComments=6

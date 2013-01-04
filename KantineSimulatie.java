@@ -31,6 +31,11 @@ public class KantineSimulatie {
     private static final int MIN_ARTIKELEN_PER_PERSOON=1;
     private static final int MAX_ARTIKELEN_PER_PERSOON=4;
 
+    // kantinesimulatie - personen
+    private int studentaantal = 0;
+    private int docentaantal = -1;
+    private int kantineaantal = -1;
+
     /**
      * Constructor
      */
@@ -86,7 +91,7 @@ public class KantineSimulatie {
         }
         return artikelen;
     }
-    
+
     private String doubleNaarGeld(double prijs) {
         String[] tmp_prijs=Double.toString(prijs).split("\\.");
         if(tmp_prijs[1].length()>2) {
@@ -101,42 +106,63 @@ public class KantineSimulatie {
      */
     public void simuleer(int dagen) 
     {
+        int[] ratio={89, 99, 100};
+        double[] omzet=new double[dagen];
+        ArrayList<Integer> aantal=new ArrayList<Integer>();
         for(int i=0; i<dagen; i++) {
             // for lus voor dagen
             // bedenk hoeveel personen vandaag binnen lopen
-            int aantalpersonen=getRandomValue(MIN_PERSONEN_PER_DAG, MAX_PERSONEN_PER_DAG);
-                
-                // laat de personen maar komen...
-                for(int j=0;j<aantalpersonen;j++) 
-                {
-                    // maak persoon en dienblad aan, koppel ze
-                    Dienblad dienblad=new Dienblad();
-                    Persoon persoon=new Persoon();
-                    persoon.pakDienblad(dienblad);
-                    
-                    
-                    // bedenk hoeveel artikelen worden gepakt
-                    int aantalartikelen=getRandomValue(MIN_ARTIKELEN_PER_PERSOON, MAX_ARTIKELEN_PER_PERSOON);
-    
-                    // genereer de “artikelnummers”, dit zijn indexen 
-                    // van de artikelnamen array  
-                    int[] tepakken=getRandomArray(aantalartikelen, 0, AANTAL_ARTIKELEN-1);
-    
-                    // vind de artikelnamen op basis van de indexen hierboven
-                    String[] artikelen=geefArtikelNamen(tepakken);
-                    
-                    // loop de kantine binnen, pak de gewenste artikelen, sluit aan
-                    kantine.loopPakSluitAan(persoon, artikelen);
-                    for(String artikel:artikelen) {
-                        if(kantineaanbod.getArtikelHoeveelheid(artikel)>MIN_ARTIKELEN_PER_SOORT) {
-                            kantineaanbod.vulStapel(artikel, MAX_ARTIKELEN_PER_SOORT);
-                        }
+            // int aantalpersonen=getRandomValue(MIN_PERSONEN_PER_DAG, MAX_PERSONEN_PER_DAG);
+            int aantalpersonen = ratio[ratio.length-1];
+            // laat de personen maar komen...
+            for(int j=0;j<aantalpersonen;j++) 
+            {
+
+                int randomPersoon=getRandomValue(0, ratio[ratio.length-1]);
+                // maak persoon en dienblad aan, koppel ze
+                Dienblad dienblad=new Dienblad();
+                Persoon persoon;
+                if(randomPersoon < ratio[0]) {
+                    persoon=new Student();
+                }else if(randomPersoon < ratio[1]) {
+                    persoon=new Docent();
+                }else if(randomPersoon < ratio[2]) {
+                    persoon=new KantineMedewerker();
+                }else{
+                    persoon=new Persoon();
+                }
+                persoon.pakDienblad(dienblad);
+                persoon.drukAf();
+
+                // bedenk hoeveel artikelen worden gepakt
+                int aantalartikelen=getRandomValue(MIN_ARTIKELEN_PER_PERSOON, MAX_ARTIKELEN_PER_PERSOON);
+                aantal.add(aantalartikelen);
+
+                // genereer de “artikelnummers”, dit zijn indexen 
+                // van de artikelnamen array  
+                int[] tepakken=getRandomArray(aantalartikelen, 0, AANTAL_ARTIKELEN-1);
+
+                // vind de artikelnamen op basis van de indexen hierboven
+                String[] artikelen=geefArtikelNamen(tepakken);
+
+                // loop de kantine binnen, pak de gewenste artikelen, sluit aan
+                kantine.loopPakSluitAan(persoon, artikelen);
+                for(String artikel:artikelen) {
+                    if(kantineaanbod.getArtikelHoeveelheid(artikel)>MIN_ARTIKELEN_PER_SOORT) {
+                        kantineaanbod.vulStapel(artikel, MAX_ARTIKELEN_PER_SOORT);
                     }
                 }
+            }
             kantine.verwerkRijVoorKassa();
+            omzet[i]=kantine.getKassa().hoeveelheidGeldInKassa();
             System.out.println("Dag: "+(i+1)+"\nAantal artikelen verkocht: "+kantine.getKassa().aantalArtikelen()+"\nHoeveelheid geld verdient: "+doubleNaarGeld(kantine.getKassa().hoeveelheidGeldInKassa())+" euro");
             kantine.getKassa().resetKassa();
         }
+        int[] tmp_aantal=new int[aantal.size()];
+        for(int e=0; e<aantal.size(); e++) {
+            tmp_aantal[e]=aantal.get(e);
+        }
+        System.out.println(Administratie.berekenGemiddeldAantal(tmp_aantal)+", "+Administratie.berekenGemiddeldeOmzet(omzet)+", "+Arrays.toString(Administratie.berekenDagOmzet(omzet)));
     }
 }
 
