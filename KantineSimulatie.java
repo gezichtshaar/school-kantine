@@ -107,13 +107,14 @@ public class KantineSimulatie {
     public void simuleer(int dagen) 
     {
         int[] ratio={89, 99, 100};
+        int aantalpersonen = ratio[ratio.length-1];
+        int[] aantal=new int[dagen*aantalpersonen];
         double[] omzet=new double[dagen];
-        ArrayList<Integer> aantal=new ArrayList<Integer>();
+        int tmp=0;
         for(int i=0; i<dagen; i++) {
             // for lus voor dagen
             // bedenk hoeveel personen vandaag binnen lopen
             // int aantalpersonen=getRandomValue(MIN_PERSONEN_PER_DAG, MAX_PERSONEN_PER_DAG);
-            int aantalpersonen = ratio[ratio.length-1];
             // laat de personen maar komen...
             for(int j=0;j<aantalpersonen;j++) 
             {
@@ -136,7 +137,8 @@ public class KantineSimulatie {
 
                 // bedenk hoeveel artikelen worden gepakt
                 int aantalartikelen=getRandomValue(MIN_ARTIKELEN_PER_PERSOON, MAX_ARTIKELEN_PER_PERSOON);
-                aantal.add(aantalartikelen);
+                aantal[tmp]=aantalartikelen;
+                tmp++;
 
                 // genereer de “artikelnummers”, dit zijn indexen 
                 // van de artikelnamen array  
@@ -158,11 +160,7 @@ public class KantineSimulatie {
             System.out.println("Dag: "+(i+1)+"\nAantal artikelen verkocht: "+kantine.getKassa().aantalArtikelen()+"\nHoeveelheid geld verdient: "+doubleNaarGeld(kantine.getKassa().hoeveelheidGeldInKassa())+" euro");
             kantine.getKassa().resetKassa();
         }
-        int[] tmp_aantal=new int[aantal.size()];
-        for(int e=0; e<aantal.size(); e++) {
-            tmp_aantal[e]=aantal.get(e);
-        }
-        System.out.println(Administratie.berekenGemiddeldAantal(tmp_aantal)+", "+Administratie.berekenGemiddeldeOmzet(omzet)+", "+Arrays.toString(Administratie.berekenDagOmzet(omzet)));
+        System.out.println(Administratie.berekenGemiddeldAantal(aantal)+", "+Administratie.berekenGemiddeldeOmzet(omzet)+", "+Arrays.toString(Administratie.berekenDagOmzet(omzet)));
     }
 }
 
