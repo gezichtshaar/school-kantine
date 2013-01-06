@@ -31,7 +31,7 @@ public class Student extends Persoon
 
     @Override
     public String toString() {
-        return "\nstudentnummer : "+studentnummer+"\nteststudierichting : "+studierichting;
+        return super.toString()+"\nstudentnummer : "+studentnummer+"\nteststudierichting : "+studierichting;
     }
 
     public void setStudierichting(String studierichting) {

@@ -20,7 +20,7 @@ public class Pinpas extends Betaalwijze {
      * Methode om betaling af te handelen
      */
     public boolean betaal(double tebetalen) {
-        if(saldo-tebetalen>kredietlimiet) {
+        if(saldo-tebetalen > kredietlimiet) {
             saldo-=tebetalen;
             return true;
         }

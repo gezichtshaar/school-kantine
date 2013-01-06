@@ -32,7 +32,7 @@ public class Docent extends Persoon
 
     @Override
     public String toString() {
-        return "\nvierlettercode : "+vierlettercode+"\nafdeling : "+afdeling;
+        return super.toString()+"\nvierlettercode : "+vierlettercode+"\nafdeling : "+afdeling;
     }
 
     public void setAfdeling(String afdeling) {

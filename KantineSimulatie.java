@@ -133,6 +133,8 @@ public class KantineSimulatie {
                     persoon=new Persoon();
                 }
                 persoon.pakDienblad(dienblad);
+                
+                System.out.println(persoon.toString());
 
                 // bedenk hoeveel artikelen worden gepakt
                 int aantalartikelen=getRandomValue(MIN_ARTIKELEN_PER_PERSOON, MAX_ARTIKELEN_PER_PERSOON);

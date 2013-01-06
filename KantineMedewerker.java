@@ -31,7 +31,7 @@ public class KantineMedewerker extends Persoon
 
     @Override
     public String toString() {
-        return "\nkassarecht : "+kassarecht+"\nmedewerkernummer : "+medewerkernummer;
+        return super.toString()+"\nkassarecht : "+kassarecht+"\nmedewerkernummer : "+medewerkernummer;
     }
 
     public void setMedewerkernummer(int medewerkernummer) {
