@@ -9,29 +9,36 @@ public class KantineMedewerker extends Persoon
 {
     private boolean kassarecht;
     private int medewerkernummer;
-    
-    public KantineMedewerker() {
-        super();
+
+    public KantineMedewerker(boolean kassarecht, int medewerkernummer) {
+        this.kassarecht=kassarecht;
+        this.medewerkernummer=medewerkernummer;
     }
-    
-    public void setKassarecht(boolean kassarecht) {
-        this.kassarecht = kassarecht;
+
+    public KantineMedewerker(String BSN, String voorNaam, String achterNaam, int geboorteDag, int geboorteMaand, int geboorteJaar, char geslacht, boolean kassarecht, int medewerkernummer) {
+        super(BSN, voorNaam, achterNaam, geboorteDag, geboorteMaand, geboorteJaar, geslacht);
+        this.kassarecht=kassarecht;
+        this.medewerkernummer=medewerkernummer;
     }
-    
+
     public boolean getKassarecht() {
         return kassarecht;
     }
-    
-    public void setMedewerkernummer(int medewerkernummer) {
-      this.medewerkernummer = medewerkernummer;  
-    }
-    
+
     public int getMedewerkernummer() {
         return medewerkernummer;
     }
-    
+
     @Override
-    public void drukAf() {
-        System.out.println("\nkassarecht : "+kassarecht+"\nmedewerkernummer : "+medewerkernummer);
+    public String toString() {
+        return "\nkassarecht : "+kassarecht+"\nmedewerkernummer : "+medewerkernummer;
+    }
+
+    public void setMedewerkernummer(int medewerkernummer) {
+        this.medewerkernummer = medewerkernummer;  
+    }
+
+    public void setKassarecht(boolean kassarecht) {
+        this.kassarecht = kassarecht;
     }
 }

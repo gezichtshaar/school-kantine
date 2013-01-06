@@ -1,14 +1,16 @@
 #BlueJ class context
-comment0.params=
-comment0.target=KantineMedewerker()
-comment1.params=kassarecht
-comment1.target=void\ setKassarecht(boolean)
+comment0.params=kassarecht\ medewerkernummer
+comment0.target=KantineMedewerker(boolean,\ int)
+comment1.params=BSN\ voorNaam\ achterNaam\ geboorteDag\ geboorteMaand\ geboorteJaar\ geslacht\ kassarecht\ medewerkernummer
+comment1.target=KantineMedewerker(java.lang.String,\ java.lang.String,\ java.lang.String,\ int,\ int,\ int,\ char,\ boolean,\ int)
 comment2.params=
 comment2.target=boolean\ getKassarecht()
-comment3.params=medewerkernummer
-comment3.target=void\ setMedewerkernummer(int)
+comment3.params=
+comment3.target=int\ getMedewerkernummer()
 comment4.params=
-comment4.target=int\ getMedewerkernummer()
-comment5.params=
-comment5.target=void\ drukAf()
-numComments=6
+comment4.target=java.lang.String\ toString()
+comment5.params=medewerkernummer
+comment5.target=void\ setMedewerkernummer(int)
+comment6.params=kassarecht
+comment6.target=void\ setKassarecht(boolean)
+numComments=7

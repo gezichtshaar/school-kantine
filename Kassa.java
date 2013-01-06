@@ -35,10 +35,19 @@ public class Kassa
     }
     
     public void rekenAf(Persoon persoon) {
+        double totaalPrijs=0.0;
+        int aantalArtikelen=0;
         Iterator<Artikel> itr=persoon.getDienblad().getArtikelen();
         while(itr.hasNext()) {
-            geldInKassa+=itr.next().getPrijsArtikel();
-            totaalAantalArtikelen+=1;
+            totaalPrijs+=itr.next().getPrijsArtikel();
+            aantalArtikelen+=1;
+        }
+        
+        if(persoon.getBetaalwijze() != null && persoon.getBetaalwijze().betaal(totaalPrijs)) {
+            geldInKassa+=totaalPrijs;
+            totaalAantalArtikelen+=aantalArtikelen;
+        }else{
+            System.out.println("De betaalwijze is onbekend of het saldo is te laag.");
         }
     }
 

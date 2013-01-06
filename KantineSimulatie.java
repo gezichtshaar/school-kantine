@@ -124,16 +124,15 @@ public class KantineSimulatie {
                 Dienblad dienblad=new Dienblad();
                 Persoon persoon;
                 if(randomPersoon < ratio[0]) {
-                    persoon=new Student();
+                    persoon=new Student(42, "random");
                 }else if(randomPersoon < ratio[1]) {
-                    persoon=new Docent();
+                    persoon=new Docent("vier", "random");
                 }else if(randomPersoon < ratio[2]) {
-                    persoon=new KantineMedewerker();
+                    persoon=new KantineMedewerker(true, 42);
                 }else{
                     persoon=new Persoon();
                 }
                 persoon.pakDienblad(dienblad);
-                persoon.drukAf();
 
                 // bedenk hoeveel artikelen worden gepakt
                 int aantalartikelen=getRandomValue(MIN_ARTIKELEN_PER_PERSOON, MAX_ARTIKELEN_PER_PERSOON);
