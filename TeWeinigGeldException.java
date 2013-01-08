@@ -8,17 +8,17 @@
 public class TeWeinigGeldException extends Exception
 {   
     private String message;
-    private Exception e;
 
     public TeWeinigGeldException() {
         message="Te weinig geld";
     }
     
     public TeWeinigGeldException(Exception e) {
-        this.e=e;
+        super(e);
     }
     
     public TeWeinigGeldException(String message) {
+        super(message);
         this.message=message;
     }
     
