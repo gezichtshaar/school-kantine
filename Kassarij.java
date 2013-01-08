@@ -26,11 +26,7 @@ public class Kassarij
     }
     
     public boolean erIsEenRij() {
-        boolean isRij=false;
-        if(kassaRij.size()>0){
-            isRij=true;
-        }
-        return isRij;
+        return (kassaRij.size()>0);
     }
 
     public Iterator getKassaRijIterator() {

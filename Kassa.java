@@ -51,12 +51,22 @@ public class Kassa
             }
         }
 
-        if(persoon.getBetaalwijze() != null && persoon.getBetaalwijze().betaal(totaalPrijs)) {
-            geldInKassa+=totaalPrijs;
-            totaalAantalArtikelen+=aantalArtikelen;
-        }else{
-            System.out.println("De betaalwijze is onbekend of het saldo is te laag.");
+        if(persoon.getBetaalwijze()!=null) {
+            try {
+                persoon.getBetaalwijze().betaal(totaalPrijs);
+                geldInKassa+=totaalPrijs;
+                totaalAantalArtikelen+=aantalArtikelen;
+            }catch(TeWeinigGeldException e) {
+                System.out.println(persoon.getVoorNaam()+" mist "+e.toString());
+            }
         }
+
+        /* if(persoon.getBetaalwijze() != null && persoon.getBetaalwijze().betaal(totaalPrijs)) {
+        geldInKassa+=totaalPrijs;
+        totaalAantalArtikelen+=aantalArtikelen;
+        }else{
+        System.out.println("De betaalwijze is onbekend of het saldo is te laag.");
+        }*/
     }
 
 }

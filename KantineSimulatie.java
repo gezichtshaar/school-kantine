@@ -132,9 +132,12 @@ public class KantineSimulatie {
                 }else{
                     persoon=new Persoon();
                 }
+                Betaalwijze betaalwijze=new Contant();
+                betaalwijze.setSaldo(6.0);
+                persoon.setBetaalwijze(betaalwijze);
                 persoon.pakDienblad(dienblad);
                 
-                System.out.println(persoon.toString());
+                //System.out.println(persoon.toString());
 
                 // bedenk hoeveel artikelen worden gepakt
                 int aantalartikelen=getRandomValue(MIN_ARTIKELEN_PER_PERSOON, MAX_ARTIKELEN_PER_PERSOON);
@@ -161,7 +164,7 @@ public class KantineSimulatie {
             System.out.println("Dag: "+(i+1)+"\nAantal artikelen verkocht: "+kantine.getKassa().aantalArtikelen()+"\nHoeveelheid geld verdient: "+doubleNaarGeld(kantine.getKassa().hoeveelheidGeldInKassa())+" euro");
             kantine.getKassa().resetKassa();
         }
-        System.out.println(Administratie.berekenGemiddeldAantal(aantal)+", "+Administratie.berekenGemiddeldeOmzet(omzet)+", "+Arrays.toString(Administratie.berekenDagOmzet(omzet)));
+        System.out.println(Administratie.berekenGemiddeldAantal(aantal)+", "+doubleNaarGeld(Administratie.berekenGemiddeldeOmzet(omzet))+", "+Arrays.toString(Administratie.berekenDagOmzet(omzet)));
     }
 }
 
