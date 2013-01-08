@@ -13,7 +13,7 @@ public class Contant extends Betaalwijze {
         if(saldo-tebetalen > 0) {
             saldo-=tebetalen;
         }else{
-            throw new TeWeinigGeldException(Double.toString(saldo-tebetalen));
+            throw new TeWeinigGeldException(Double.toString((saldo-tebetalen)*-1));
         }
     }
 }

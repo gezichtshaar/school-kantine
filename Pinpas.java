@@ -23,7 +23,7 @@ public class Pinpas extends Betaalwijze {
         if(saldo-tebetalen > kredietlimiet) {
             saldo-=tebetalen;
         }else{
-            throw new TeWeinigGeldException(Double.toString(saldo-tebetalen));
+            throw new TeWeinigGeldException(Double.toString((saldo-tebetalen)*-1));
         }
     }
 }
