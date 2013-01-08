@@ -10,5 +10,5 @@ comment3.target=void\ setNaamArtikel(java.lang.String)
 comment4.params=
 comment4.target=java.lang.String\ getNaamArtikel()
 comment5.params=
-comment5.target=void\ drukAf()
+comment5.target=java.lang.String\ toString()
 numComments=6

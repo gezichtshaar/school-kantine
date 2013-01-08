@@ -27,8 +27,8 @@ public class Artikel
          return naam;
     }
          
-    public void drukAf(){
-        System.out.println("Artikel:"+naam);
-        System.out.println("Prijs:"+prijs);
+    @Override
+    public String toString(){
+        return "Artikel: "+naam+"\nPrijs: "+prijs;
     }
 }

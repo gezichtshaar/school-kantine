@@ -15,12 +15,11 @@ public class Dienblad
      * Constructor for objects of class Dienblad
      */
     public Dienblad() {
-        artikelen=new ArrayList();
+        artikelen=new ArrayList<Artikel>();
     }
     
     public Iterator getArtikelen() {
-        Iterator<Artikel> artikelLijst=artikelen.iterator();
-        return artikelLijst;
+        return artikelen.iterator();
     }
 
     public void voegToe(Artikel artikel) {

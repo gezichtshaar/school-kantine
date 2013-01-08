@@ -59,6 +59,8 @@ public class Kassa
             }catch(TeWeinigGeldException e) {
                 System.out.println(persoon.getVoorNaam()+" mist "+e.toString());
             }
+        }else{
+            System.out.println("onbekende betaalwijze");
         }
 
         /* if(persoon.getBetaalwijze() != null && persoon.getBetaalwijze().betaal(totaalPrijs)) {

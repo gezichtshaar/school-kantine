@@ -13,7 +13,7 @@ public class Kassarij
      * Constructor for objects of class Kassarij
      */
     public Kassarij() {
-        kassaRij=new LinkedList();
+        kassaRij=new LinkedList<Persoon>();
     }
     
     public Persoon eerstePersoonInRij() {
@@ -30,8 +30,7 @@ public class Kassarij
     }
 
     public Iterator getKassaRijIterator() {
-        Iterator<Persoon> itr=kassaRij.iterator();
-        return itr;
+        return kassaRij.iterator();
     }
     
     public void sluitAchteraan(Persoon persoon) {

@@ -8,7 +8,6 @@
 public class PersoonsVergelijker
 {
     public PersoonsVergelijker() {
-        
     }
 
     public void main(String[] args) {

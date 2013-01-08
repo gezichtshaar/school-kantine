@@ -79,6 +79,7 @@ public class Persoon
         return dienblad;
     }
 
+    @Override
     public String toString() {
         return "Voornaam: "+voorNaam+ "\nAchternaam: "+achterNaam+"\nBSN: "+BSN+ "\nGeboortedatum: "+getGeboorteDatum()+"\nGeslacht: "+getGeslacht();
     }
