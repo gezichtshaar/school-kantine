@@ -5,8 +5,10 @@
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class KantineMedewerker extends Persoon
+public class KantineMedewerker extends Persoon implements KortingskaartHouder
 {
+    private final double kortingsPercentage=0.65;
+    private final double maximumKorting=1.0;
     private boolean kassarecht;
     private int medewerkernummer;
 
@@ -27,6 +29,18 @@ public class KantineMedewerker extends Persoon
 
     public int getMedewerkernummer() {
         return medewerkernummer;
+    }
+    
+    public double geefKortingsPercentage() {
+        return kortingsPercentage;
+    }
+    
+    public boolean heeftMaximum() {
+        return (maximumKorting>0.0);
+    }
+    
+    public double geefMaximum() {
+        return maximumKorting;
     }
 
     @Override

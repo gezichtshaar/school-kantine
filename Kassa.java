@@ -11,7 +11,6 @@ public class Kassa
     private double geldInKassa;
     private int totaalAantalArtikelen;
     private Kassarij kassarij;
-    
 
     /**
      * Constructor for objects of class Kassa
@@ -20,20 +19,20 @@ public class Kassa
         this.kassarij=kassarij;
         resetKassa();
     }
-    
+
     public int aantalArtikelen() {
         return totaalAantalArtikelen;
     }
-    
+
     public double hoeveelheidGeldInKassa() {
         return geldInKassa;
     }
-    
+
     public void resetKassa() {
         geldInKassa=0.0;
         totaalAantalArtikelen=0;        
     }
-    
+
     public void rekenAf(Persoon persoon) {
         double totaalPrijs=0.0;
         int aantalArtikelen=0;
@@ -42,7 +41,16 @@ public class Kassa
             totaalPrijs+=itr.next().getPrijsArtikel();
             aantalArtikelen+=1;
         }
-        
+
+        if(persoon instanceof KortingskaartHouder) {
+            KortingskaartHouder kortingkaarthouder=(KortingskaartHouder) persoon;
+            if(kortingkaarthouder.heeftMaximum() && totaalPrijs*(1-kortingkaarthouder.geefKortingsPercentage()) > kortingkaarthouder.geefMaximum()) {
+                totaalPrijs-=kortingkaarthouder.geefMaximum();
+            }else{
+                totaalPrijs*=kortingkaarthouder.geefKortingsPercentage();
+            }
+        }
+
         if(persoon.getBetaalwijze() != null && persoon.getBetaalwijze().betaal(totaalPrijs)) {
             geldInKassa+=totaalPrijs;
             totaalAantalArtikelen+=aantalArtikelen;
