@@ -10,7 +10,7 @@ public class TeWeinigGeldException extends Exception
     private String message;
 
     public TeWeinigGeldException() {
-        message="Te weinig geld";
+        super("Onbekend bericht.");
     }
     
     public TeWeinigGeldException(Exception e) {
@@ -19,10 +19,9 @@ public class TeWeinigGeldException extends Exception
     
     public TeWeinigGeldException(String message) {
         super(message);
-        this.message=message;
     }
     
     public String toString() {
-        return message+"euro";
+        return getMessage()+"euro";
     }
 }
