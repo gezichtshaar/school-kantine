@@ -35,7 +35,7 @@ public class KantineAanbod {
         return aanbod.get(productnaam); 
     }
     
-    public String[] getKeySet() {
+    public String[] getKeyArray() {
         return aanbod.keySet().toArray(new String[aanbod.keySet().size()]);
     }
 

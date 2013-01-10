@@ -57,10 +57,10 @@ public class Kassa
                 geldInKassa+=totaalPrijs;
                 totaalAantalArtikelen+=aantalArtikelen;
             }catch(TeWeinigGeldException e) {
-                System.out.println(persoon.getVoorNaam()+" mist "+e.toString());
+                SchoolKantine.addToLog(persoon.getVoorNaam()+" mist "+e.toString());
             }
         }else{
-            System.out.println("onbekende betaalwijze");
+            SchoolKantine.addToLog("onbekende betaalwijze");
         }
 
         /* if(persoon.getBetaalwijze() != null && persoon.getBetaalwijze().betaal(totaalPrijs)) {

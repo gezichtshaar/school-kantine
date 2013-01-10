@@ -11,16 +11,16 @@ public class KantineSimulatie {
     private Random random;
 
     // minimum en maximum aantal artikelen per soort
-    private static final int MIN_ARTIKELEN_PER_SOORT=10000;
-    private static final int MAX_ARTIKELEN_PER_SOORT=20000;
+    private int MinArtikelSoort;
+    private int MaxArtikelSoort;
 
     // minimum en maximum aantal personen per dag
-    private static final int MIN_PERSONEN_PER_DAG=50;
-    private static final int MAX_PERSONEN_PER_DAG=100;
+    private int MinArtikelPersoon;
+    private int MaxArtikelPersoon;
 
     // minimum en maximum artikelen per persoon
-    private static final int MIN_ARTIKELEN_PER_PERSOON=1;
-    private static final int MAX_ARTIKELEN_PER_PERSOON=4;
+    private int MinPersoonDag;
+    private int MaxPersoonDag;
 
     // kantinesimulatie - personen
     private int studentaantal = 0;
@@ -30,8 +30,14 @@ public class KantineSimulatie {
     /**
      * Constructor
      */
-    public KantineSimulatie() 
+    public KantineSimulatie(int MinArtikelSoort, int MaxArtikelSoort, int MinArtikelPersoon, int MaxArtikelPersoon, int MinPersoonDag, int MaxPersoonDag) 
     {
+        this.MinArtikelSoort=Math.abs(MinArtikelSoort);
+        this.MaxArtikelSoort=Math.abs(MaxArtikelSoort);
+        this.MinArtikelPersoon=Math.abs(MinArtikelPersoon);
+        this.MaxArtikelPersoon=Math.abs(MaxArtikelPersoon);
+        this.MinPersoonDag=Math.abs(MinPersoonDag);
+        this.MaxPersoonDag=Math.abs(MaxPersoonDag);
         kantine=new Kantine();
         random=new Random();
         kantineaanbod=new KantineAanbod(); 
@@ -94,13 +100,29 @@ public class KantineSimulatie {
         kantineaanbod.addArtikel(naam, prijs, hoeveelheid);
     }
 
+    public void setMinArtikelSoort(int hoeveelheid) {
+        
+    }
+    
+    public void setMaxArtikelSoort(int hoeveelheid) {
+        
+    }
+    
+    public void setMinArtikelPersoon(int hoeveelheid) {
+        
+    }
+    
+    public void setMaxArtikelPersoon(int hoeveelheid) {
+        
+    }
+
     /**
      * Deze methode simuleert een aantal dagen in het verloop van de kantine
      * @param dagen
      */
     public void simuleer(int dagen) 
     {
-        if(kantineaanbod.getKeySet().length>0) {
+        if(kantineaanbod.getKeyArray().length>0) {
             int[] ratio={89, 99, 100};
             int aantalpersonen = ratio[ratio.length-1];
             int[] aantal=new int[dagen*aantalpersonen];
@@ -135,31 +157,33 @@ public class KantineSimulatie {
                     //System.out.println(persoon.toString());
 
                     // bedenk hoeveel artikelen worden gepakt
-                    int aantalartikelen=getRandomValue(MIN_ARTIKELEN_PER_PERSOON, MAX_ARTIKELEN_PER_PERSOON);
+                    int aantalartikelen=getRandomValue(MinArtikelPersoon, MaxArtikelPersoon);
                     aantal[tmp]=aantalartikelen;
                     tmp++;
 
                     // genereer de “artikelnummers”, dit zijn indexen 
                     // van de artikelnamen array  
-                    int[] tepakken=getRandomArray(aantalartikelen, 0, kantineaanbod.getKeySet().length-1);
+                    int[] tepakken=getRandomArray(aantalartikelen, 0, kantineaanbod.getKeyArray().length-1);
 
                     // vind de artikelnamen op basis van de indexen hierboven
-                    String[] artikelen=geefArtikelNamen(kantineaanbod.getKeySet(), tepakken);
+                    String[] artikelen=geefArtikelNamen(kantineaanbod.getKeyArray(), tepakken);
 
                     // loop de kantine binnen, pak de gewenste artikelen, sluit aan
                     kantine.loopPakSluitAan(persoon, artikelen);
                     for(String artikel:artikelen) {
-                        if(kantineaanbod.getArtikelHoeveelheid(artikel)>MIN_ARTIKELEN_PER_SOORT) {
-                            kantineaanbod.vulStapel(artikel, MAX_ARTIKELEN_PER_SOORT);
+                        if(kantineaanbod.getArtikelHoeveelheid(artikel)>MinArtikelSoort) {
+                            kantineaanbod.vulStapel(artikel, MaxArtikelSoort);
                         }
                     }
                 }
                 kantine.verwerkRijVoorKassa();
                 omzet[i]=kantine.getKassa().hoeveelheidGeldInKassa();
-                System.out.println("Dag: "+(i+1)+"\nAantal artikelen verkocht: "+kantine.getKassa().aantalArtikelen()+"\nHoeveelheid geld verdient: "+doubleNaarGeld(kantine.getKassa().hoeveelheidGeldInKassa())+" euro");
+                SchoolKantine.addToLog("Dag: "+(i+1)+"\nAantal artikelen verkocht: "+kantine.getKassa().aantalArtikelen()+"\nHoeveelheid geld verdient: "+doubleNaarGeld(kantine.getKassa().hoeveelheidGeldInKassa())+" euro");
                 kantine.getKassa().resetKassa();
             }
-            System.out.println(Administratie.berekenGemiddeldAantal(aantal)+", "+doubleNaarGeld(Administratie.berekenGemiddeldeOmzet(omzet))+", "+Arrays.toString(Administratie.berekenDagOmzet(omzet)));
+            SchoolKantine.addToLog(Administratie.berekenGemiddeldAantal(aantal)+", "+doubleNaarGeld(Administratie.berekenGemiddeldeOmzet(omzet))+", "+Arrays.toString(Administratie.berekenDagOmzet(omzet)));
+        }else{
+            SchoolKantine.addToLog("Voeg eerst artikelen toe.");
         }
     }
 }
