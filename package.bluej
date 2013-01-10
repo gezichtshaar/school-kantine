@@ -168,6 +168,7 @@ target13.name=TeWeinigGeldException
 target13.naviview.expanded=true
 target13.showInterface=false
 target13.type=ClassTarget
+<<<<<<< HEAD
 target13.width=160
 target13.x=950
 target13.y=570
@@ -175,6 +176,15 @@ target14.editor.height=700
 target14.editor.width=900
 target14.editor.x=125
 target14.editor.y=258
+=======
+target13.width=140
+target13.x=870
+target13.y=320
+target14.editor.height=1056
+target14.editor.width=1928
+target14.editor.x=-4
+target14.editor.y=-4
+>>>>>>> 78da565c387afc04daec7b21345a011e3865561e
 target14.height=50
 target14.name=PersoonsVergelijker
 target14.naviview.expanded=true
