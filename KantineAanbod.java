@@ -3,8 +3,10 @@ import java.util.*;
 public class KantineAanbod {
     // interne opslag voorraad
     private HashMap<String, ArrayList<Artikel>> aanbod;
-   
-    
+
+    public KantineAanbod() {
+        aanbod=new HashMap<String, ArrayList<Artikel>>();
+    }
     /**
      * Constructor. Het eerste argument is een lijst met artikelnamen,
      * het tweede argument is een lijst met prijzen en het derde argument
@@ -30,8 +32,11 @@ public class KantineAanbod {
      * naam van het artikel. Retourneert null als artikel niet bestaat.
      */
     private ArrayList<Artikel> getArrayList(String productnaam) {
-
         return aanbod.get(productnaam); 
+    }
+    
+    public String[] getKeySet() {
+        return aanbod.keySet().toArray(new String[aanbod.keySet().size()]);
     }
 
     public void vulStapel(String artikelnaam, int hoeveelheid) {
@@ -42,7 +47,15 @@ public class KantineAanbod {
         }
         aanbod.put(artikelnaam, artikelen);
     }
-    
+
+    public void addArtikel(String artikelnaam, double prijs, int hoeveelheid) {
+        ArrayList<Artikel> artikelen=new ArrayList<Artikel>();
+        for(int i=0; i<hoeveelheid; i++) {
+            artikelen.add(new Artikel(artikelnaam, prijs));
+        }
+        aanbod.put(artikelnaam, artikelen);
+    }
+
     /**
      * Private methode om een Artikel van de stapel artikelen af te pakken. 
      * Retourneert null als de stapel leeg is.
@@ -54,7 +67,7 @@ public class KantineAanbod {
         }
         if (stapel.size()==0)
         {
-           return null;
+            return null;
         }
         else 
         {
@@ -63,7 +76,7 @@ public class KantineAanbod {
             return a;
         }
     }
-    
+
     public int getArtikelHoeveelheid(String artikel) {
         return aanbod.get(artikel).size();
     }
