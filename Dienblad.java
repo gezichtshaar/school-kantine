@@ -17,13 +17,15 @@ public class Dienblad
     public Dienblad() {
         artikelen=new ArrayList<Artikel>();
     }
-    
+
     public Iterator getArtikelen() {
         return artikelen.iterator();
     }
 
     public void voegToe(Artikel artikel) {
-        artikelen.add(artikel);
+        if(artikel != null) {
+            artikelen.add(artikel);
+        }
     }    
-    
+
 }

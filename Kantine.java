@@ -23,20 +23,20 @@ public class Kantine
     public Kassa getKassa() {
         return kassa;
     }
-    
+
     public void setKantineAanbod(KantineAanbod kantineAanbod) {
         this.kantineAanbod=kantineAanbod;
     }
-    
+
     public void loopPakSluitAan(Persoon persoon, String[] artikelnamen) {
-        
+
         for(int n=0; n<artikelnamen.length; n++) {
             persoon.getDienblad().voegToe(kantineAanbod.getArtikel(artikelnamen[n]));
         }
-        
+
         kassarij.sluitAchteraan(persoon);
     }
-    
+
     public void verwerkRijVoorKassa() {
         if(kassarij.erIsEenRij()) {
             Iterator<Kassarij> itr=kassarij.getKassaRijIterator();
@@ -45,6 +45,5 @@ public class Kantine
             }
         }
     }
-    
-    
+
 }
